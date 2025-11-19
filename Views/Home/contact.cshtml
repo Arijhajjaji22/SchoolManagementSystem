@@ -1,0 +1,342 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+
+
+}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉduNova</title>
+    <link rel="icon" type="image/x-icon" href="../diplome1.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #eaf6fc; /* Couleur claire en harmonie avec #1eaaf1 */
+            color: #fff;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            background: #1eaaf1;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 25px;
+        }
+
+            .menu li {
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 5px;
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+            }
+
+                .menu li a {
+                    text-decoration: none;
+                    color: #fff;
+                    transition: 0.3s;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
+
+                .menu li:hover,
+                .menu li.active {
+                    background: #1598d4; /* Variante foncée de #1eaaf1 */
+                    transform: scale(1.1);
+                }
+
+                .menu li a i {
+                    font-size: 18px;
+                }
+
+        .mobile-menu {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sections-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #1eaaf1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .section {
+            display: none;
+        }
+
+            .section.active {
+                display: block;
+            }
+
+        .signin-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            width: 320px;
+            margin-top: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+            .signin-box h2 {
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+
+            .signin-box input {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                background: rgba(255, 255, 255, 0.2);
+                color: #fff;
+                text-align: center;
+            }
+
+                .signin-box input::placeholder {
+                    color: rgba(255, 255, 255, 0.7);
+                }
+
+            .signin-box button {
+                width: 100%;
+                padding: 12px;
+                background: #1598d4; /* bouton cohérent avec le bleu principal */
+                border: none;
+                color: white;
+                font-size: 18px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 10px;
+                transition: all 0.3s ease;
+                font-weight: 600;
+            }
+
+                .signin-box button:hover {
+                    background: #117db1; /* encore plus foncé au survol */
+                    transform: scale(1.05);
+                }
+
+        .menu-container {
+            width: 100%;
+        }
+
+        .signin-box input:focus {
+            outline: none;
+            border: 2px solid #1598d4;
+        }
+
+        .sections-container i {
+            font-size: 30px;
+            color: #ffffff; /* ou #e1f5fe pour adoucir un peu */
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .sections-container .active {
+            font-size: 17px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+            .password-container input {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                background: rgba(255, 255, 255, 0.2);
+                color: #fff;
+                text-align: center;
+            }
+
+            .password-container i {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #fff;
+                cursor: pointer;
+                font-size: 14px;
+            }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <nav class="menu-container">
+            <ul class="menu">
+                <li class="active"><a href="#admin"><i class="fa fa-user-shield"></i> Espace Administrateur</a></li>
+                <li><a href="#directeur"><i class="fa fa-user-tie"></i> Espace Directeur</a></li>
+            </ul>
+        </nav>
+        <div class="sections-container">
+            <div id="eleve" class="section">
+                <i class="fa fa-user-graduate"></i> Bienvenue dans l’Espace Élève
+                <div class="signin-box">
+                    <h2>Sign In</h2>
+                    <input type="email" placeholder="Email">
+                    <div class="password-container">
+                        <input id="password-eleve" type="password" placeholder="Mot de passe">
+                        <i class="fas fa-eye" id="togglePassword-eleve"></i> <!-- Icône pour afficher/masquer -->
+                    </div>
+                    <button>Se connecter</button>
+                </div>
+            </div>
+            <div id="admin" class="section  active">
+                <i class="fa fa-user-shield"></i> Bienvenue dans l’Espace Admin
+                <div class="signin-box">
+                    <h2>Sign In</h2>
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <p style="color:red;">@ViewBag.ErrorMessage</p>
+                    }
+                    <form method="post" asp-action="SignInAdmin" asp-controller="Admin">
+                        <input type="email" name="email" placeholder="Email" required />
+                        <div class="password-container">
+                            <input id="password-admin" type="password" name="password" placeholder="Mot de passe" required />
+                            <i class="fas fa-eye" id="togglePassword-admin"></i>
+                        </div>
+                        <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                        <button type="submit">Se connecter</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="parent" class="section">
+                <i class="fa fa-user"></i> Bienvenue dans l’Espace Parent
+                <div class="signin-box">
+                    <h2>Sign In</h2>
+                    <input type="email" placeholder="Email">
+                    <div class="password-container">
+                        <input id="password-parent" type="password" placeholder="Mot de passe">
+                        <i class="fas fa-eye" id="togglePassword-parent"></i> <!-- Icône pour afficher/masquer -->
+                    </div>
+                    <button>Se connecter</button>
+                </div>
+            </div>
+
+            <div id="directeur" class="section">
+                <i class="fa fa-user-tie"></i> Bienvenue dans l’Espace Directeur
+                <div class="signin-box">
+                    <h2>Sign In</h2>
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <p style="color:red;">@ViewBag.ErrorMessage</p>
+                    }
+                    <form method="post" action="/api/Directeur/loginDirecteur">
+
+                        <input type="email" name="email" placeholder="Email" required />
+                        <div class="password-container">
+                            <input id="password-directeur" type="password" name="password" placeholder="Mot de passe" required />
+                            <i class="fas fa-eye" id="togglePassword-directeur"></i>
+                        </div>
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                        <button type="submit">Se connecter</button>
+                    </form>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+              document.addEventListener('DOMContentLoaded', () => {
+            // Sélectionner toutes les icônes de toggle
+            const togglePasswordEleve = document.getElementById('togglePassword-eleve');
+            const togglePasswordAdmin = document.getElementById('togglePassword-admin');
+            const togglePasswordParent = document.getElementById('togglePassword-parent');
+            const togglePasswordDirecteur = document.getElementById('togglePassword-directeur');
+
+            // Fonction générique pour afficher/masquer le mot de passe
+            function togglePasswordVisibility(inputId, toggleIcon) {
+                const passwordInput = document.getElementById(inputId);
+                toggleIcon.addEventListener('click', function () {
+                    const type = passwordInput.type === 'password' ? 'text' : 'password';
+                    passwordInput.type = type;
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            // Appliquer à chaque champ de mot de passe
+            togglePasswordVisibility('password-eleve', togglePasswordEleve);
+            togglePasswordVisibility('password-admin', togglePasswordAdmin);
+            togglePasswordVisibility('password-parent', togglePasswordParent);
+            togglePasswordVisibility('password-directeur', togglePasswordDirecteur);
+
+            // Gestion du changement de section active dans le menu (pour un autre usage dans ton code)
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.menu li a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    const targetId = link.getAttribute('href').substring(1);
+
+                    sections.forEach(section => section.classList.remove('active'));
+                    document.getElementById(targetId).classList.add('active');
+
+                    navLinks.forEach(nav => nav.parentElement.classList.remove('active'));
+                    link.parentElement.classList.add('active');
+                });
+            });
+        });
+
+    </script>
+
+
+</body>
+</html>
+

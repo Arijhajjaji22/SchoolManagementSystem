@@ -1,0 +1,120 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Paiement des frais de scolarité</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .tranches {
+            margin: 20px 0;
+        }
+
+            .tranches label {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #6772e5;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+            button:hover {
+                background-color: #5469d4;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Veuillez choisir quelle tranche vous allez payer</h2>
+
+        <form id="payment-form">
+            <div class="tranches">
+                <label>
+                    <input type="radio" name="tranche" value="2500" required>
+                    Première tranche - 2500 TND
+                </label>
+                <label>
+                    <input type="radio" name="tranche" value="1500">
+                    Deuxième tranche - 1500 TND
+                </label>
+                <label>
+                    <input type="radio" name="tranche" value="2000">
+                    Troisième tranche - 2000 TND
+                </label>
+                <label>
+                    <input type="radio" name="tranche" value="6000">
+                    Payer toutes les tranches - 6000 TND
+                </label>
+            </div>
+
+            <button type="submit">Payer avec Stripe</button>
+        </form>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe("pk_test_51RCRfMIz1g0BPx8NhNhDanFM2oMzYl9Lik1D85L9MNDT4I7o7YDBsekq66SsaKkdsrkHxqCEwzdOfHfNAFbHOEAI00hTvzxH6B");
+                const urlParams = new URLSearchParams(window.location.search);
+        const eleveId = urlParams.get('eleveId');
+
+        document.getElementById("payment-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const selectedAmount = document.querySelector('input[name="tranche"]:checked').value;
+          console.log("eleveId récupéré depuis l'URL :", eleveId);
+
+          fetch("/create-checkout-session", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ amount: selectedAmount,eleveId: eleveId  })
+          })
+          .then(res => res.json())
+          .then(data => {
+            return stripe.redirectToCheckout({ sessionId: data.id });
+          })
+          .catch(error => {
+            console.error("Erreur Stripe :", error);
+          });
+        });
+    </script>
+
+</body>
+</html>
+

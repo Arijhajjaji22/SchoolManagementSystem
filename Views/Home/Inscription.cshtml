@@ -1,0 +1,400 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉduNova</title>
+    <link rel="icon" type="image/x-icon" href="../diplome1.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+            padding: 50px 0;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .progress-bar-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+            .progress-bar span {
+                display: block;
+                height: 100%;
+                background-color: #007bff;
+                border-radius: 4px;
+            }
+
+        .form-step {
+            display: none;
+        }
+
+            .form-step.active {
+                display: block;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+            }
+
+        .form-control {
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .required {
+            color: red;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #0056b3;
+            }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-cancel:hover {
+                background-color: #c82333;
+            }
+
+        .step-indicator {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+            .step-indicator span {
+                font-weight: bold;
+            }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h3>Inscription Élève</h3>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <span style="width: 33%"></span>
+            </div>
+        </div>
+        <form id="registrationForm"  method="post" action="/api/Eleve" enctype="multipart/form-data">
+
+            <!-- Form Step 1 -->
+            <div class="form-step active" id="step1">
+                <div class="form-group">
+                    <label for="prenom">Prénom <span class="required">*</span></label>
+                    <input type="text" id="prenom" class="form-control" name="Prenom" placeholder="Prénom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nom">Nom <span class="required">*</span></label>
+                    <input type="text" id="nom" class="form-control" name="Nom" placeholder="Nom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailEleve">Email de l'Élève</label>
+                    <input type="email" id="emailEleve" class="form-control" name="Email" placeholder="Email de l'élève (optionnel)">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailParent">Email du Parent</label>
+                    <input type="email" id="emailParent" class="form-control" name="EmailParent" placeholder="Email du parent (optionnel)">
+                </div>
+
+                <div class="button-container">
+                    <button type="button" class="btn-custom" onclick="nextStep(2)">Suivant</button>
+                </div>
+            </div>
+
+            <!-- Form Step 2 -->
+            <div class="form-step" id="step2">
+                <div class="form-group">
+                    <label for="classe">Classe <span class="required">*</span></label>
+                    <select id="classe" class="form-control" name="Classe" required onchange="updateFields()">
+                        <option value="">Sélectionner une classe</option>
+                        <option value="7ème année">7ème année</option>
+                        <option value="8ème année">8ème année</option>
+                        <option value="9ème année">9ème année</option>
+                        <option value="1ère année">1ère année</option>
+                        <option value="2ème année">2ème année</option>
+                        <option value="3ème année">3ème année</option>
+                        <option value="Terminale">Terminale</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateNaissance">Date de Naissance <span class="required">*</span></label>
+                    <input type="date" id="dateNaissance" class="form-control" name="DateDeNaissance" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lieuNaissance">Lieu de Naissance <span class="required">*</span></label>
+                    <input type="text" id="lieuNaissance" class="form-control" name="LieuDeNaissance" placeholder="Lieu de naissance" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nationalite">Nationalité <span class="required">*</span></label>
+                    <input type="text" id="nationalite" class="form-control" name="Nationalite" placeholder="Nationalité" required>
+                </div>
+
+                <div class="button-container">
+                    <button type="button" class="btn-cancel" onclick="previousStep(1)">Précédent</button>
+                    <button type="button" class="btn-custom" onclick="nextStep(3)">Suivant</button>
+                </div>
+            </div>
+
+            <!-- Form Step 3 -->
+            <div class="form-step" id="step3">
+                <div class="form-group" id="ecoleFields">
+                    <!-- Champs dynamiques en fonction de la classe -->
+                </div>
+
+                <div class="button-container">
+                    <button type="button" class="btn-cancel" onclick="previousStep(2)">Précédent</button>
+                    <button type="submit" class="btn-custom">S'inscrire</button>
+                </div>
+            </div>
+
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <span id="stepIndicator">Étape 1</span>
+            </div>
+        </form>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const classe = document.getElementById("classe");
+            if (classe) {
+                classe.addEventListener("change", updateFields);
+            }
+
+                  document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('/api/Eleve', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+                return response.json();
+            })
+            .then(data => {
+                Swal.fire({
+                    title: 'Inscription réussie !',
+                    text: 'Souhaitez-vous procéder au paiement maintenant ?',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Oui, payer maintenant',
+                    cancelButtonText: 'Non, plus tard',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+        window.location.href = `/Home/paiement?eleveId=${data.id}`;                    } else {
+                        Swal.fire({
+                            title: 'Merci !',
+                            text: 'Vous pourrez effectuer le paiement ultérieurement.',
+                            icon: 'info',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Erreur',
+                    text: "Une erreur s'est produite lors de l'inscription : " + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Fermer'
+                });
+            });
+        });
+
+            let currentStep = 1;
+
+            window.nextStep = function (step) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep = step;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgressBar();
+                updateStepIndicator();
+            };
+
+            window.previousStep = function (step) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep = step;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateProgressBar();
+                updateStepIndicator();
+            };
+
+            function updateProgressBar() {
+                let progress = (currentStep - 1) * 33;
+                document.querySelector('.progress-bar span').style.width = `${progress}%`;
+            }
+
+            function updateStepIndicator() {
+                document.getElementById('stepIndicator').innerText = `Étape ${currentStep}`;
+            }
+
+
+        });
+
+                 function updateFields() {
+            const selectedClasse = classe.value;
+            const ecoleFields = document.getElementById("ecoleFields");
+            ecoleFields.innerHTML = ""; // Réinitialiser les champs
+
+            const filieres = `
+                <label for="option">Sélectionner une Filière d'Études <span class="required">*</span></label>
+                <select id="option" name="Filiere" class="form-control">
+                    <option value="math">Mathématiques</option>
+                    <option value="science">Science</option>
+                    <option value="informatique">Informatique</option>
+                    <option value="technique">Technique</option>
+                    <option value="économie">Économie</option>
+                    <option value="lettres">Lettres</option>
+                </select>
+            `;
+
+            const options = `
+                <label for="langue">Sélectionner une Option <span class="required">*</span></label>
+                <select id="langue" name="Option" class="form-control">
+                    <option value="allemand">Allemand</option>
+                    <option value="espagnol">Espagnol</option>
+                    <option value="italien">Italien</option>
+                    <option value="chinois">Chinois</option>
+                    <option value="dessin">Dessin</option>
+                </select>
+            `;
+
+            switch (selectedClasse) {
+                case "7ème année":
+                    ecoleFields.innerHTML = `
+                        <label for="ecolePrecedente">Nom de l'École Précédente <span class="required">*</span></label>
+                        <input type="text" id="ecolePrecedente" name="EcolePrecedente" class="form-control" required>
+                        <label for="bulletin6eme">Bulletin de la 6ème Année <span class="required">*</span></label>
+                        <input type="file" id="bulletin6eme" name="BulletinFile" class="form-control" required>
+                    `;
+                    break;
+                case "8ème année":
+                    ecoleFields.innerHTML = `
+                        <label for="ecolePrecedente">Nom du Collège Précédent <span class="required">*</span></label>
+                        <input type="text" id="ecolePrecedente" name="EcolePrecedente" class="form-control" required>
+                        <label for="bulletin7eme">Bulletin de la 7ème Année <span class="required">*</span></label>
+                        <input type="file" id="bulletin7eme" name="BulletinFile" class="form-control" required>
+                    `;
+                    break;
+                case "9ème année":
+                    ecoleFields.innerHTML = `
+                        <label for="ecolePrecedente">Nom du Collège Précédent <span class="required">*</span></label>
+                        <input type="text" id="ecolePrecedente" name="EcolePrecedente" class="form-control" required>
+                        <label for="bulletin8eme">Bulletin de la 8ème Année <span class="required">*</span></label>
+                        <input type="file" id="bulletin8eme" name="BulletinFile" class="form-control" required>
+                    `;
+                    break;
+                case "1ère année":
+                    ecoleFields.innerHTML = `
+                        <label for="bulletin9eme">Bulletin de la 9ème Année <span class="required">*</span></label>
+                        <input type="file" id="bulletin9eme" name="BulletinFile" class="form-control" required>
+                        <label for="ecolePrecedente">Nom du Collège Précédent <span class="required">*</span></label>
+                        <input type="text" id="ecolePrecedente" name="EcolePrecedente" class="form-control" required>
+                    `;
+                    break;
+                case "2ème année":
+                    ecoleFields.innerHTML = `
+                        <label for="ecolePrecedente">Nom du Lycée Précédent <span class="required">*</span></label>
+                        <input type="text" id="ecolePrecedente" name="EcolePrecedente" class="form-control" required>
+                        <label for="bulletin">Bulletin de l'Année Précédente <span class="required">*</span></label>
+                        <input type="file" id="bulletin" name="BulletinFile" class="form-control" required>
+                        ${filieres}
+                    `;
+                    break;
+                case "3ème année":
+                case "Terminale":
+                    ecoleFields.innerHTML = `
+                        <label for="ecolePrecedente">Nom du Lycée Précédent <span class="required">*</span></label>
+                        <input type="text" id="ecolePrecedente" name="EcolePrecedente" class="form-control" required>
+                        <label for="bulletin">Bulletin de la 3ème Année <span class="required">*</span></label>
+                        <input type="file" id="bulletin" name="BulletinFile" class="form-control" required>
+                        ${filieres}
+                        ${options}
+                    `;
+                    break;
+            }
+        }
+    </script>
+
+
+</body>
+</html>

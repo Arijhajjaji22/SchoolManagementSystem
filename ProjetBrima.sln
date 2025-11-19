@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetBrima", "ProjetBrima.csproj", "{069EF482-B68F-4C80-AF9D-F207207E8842}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{069EF482-B68F-4C80-AF9D-F207207E8842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069EF482-B68F-4C80-AF9D-F207207E8842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069EF482-B68F-4C80-AF9D-F207207E8842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069EF482-B68F-4C80-AF9D-F207207E8842}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF3F607A-3C6E-4EAF-B1A4-C36CA3A50012}
+	EndGlobalSection
+EndGlobal

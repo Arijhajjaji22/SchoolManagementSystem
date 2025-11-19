@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null;
+}
+@model string
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉduNova</title>
+    <link rel="icon" type="image/x-icon" href="../diplome1.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #007bff; /* Nouveau couleur pour les titres */
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+            h2 i {
+                margin-right: 10px; /* Espacement entre l'icône et le texte */
+            }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+            .form-group input:disabled {
+                background-color: #f2f2f2;
+            }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #28a745; /* Nouvelle couleur du bouton */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .btn:disabled {
+                background-color: #ccc;
+            }
+
+            .btn:hover {
+                background-color: #218838; /* Nouveau fond au survol */
+            }
+
+        .error-message {
+            color: #d9534f;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .lockout-message {
+            color: #ff0000;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2><i class="fas fa-lock"></i> Accès réservé</h2>
+        <h2><i class="fas fa-key"></i> Entrez le code d'accès</h2>
+
+        <form method="post" asp-action="CodeAccess" asp-controller="Admin">
+            <div class="form-group">
+                <label for="accessCode">Code d'accès :</label>
+
+                <!-- Modification du type en password pour masquer le code -->
+                <input type="password" id="accessCode" name="accessCode" required @(ViewBag.IsLockedOut != null && ViewBag.IsLockedOut ? "disabled" : "") />
+                <button type="submit" class="btn" @(ViewBag.IsLockedOut != null && ViewBag.IsLockedOut ? "disabled" : "")>
+                    <i class="fas fa-check"></i> Valider
+                </button>
+            </div>
+        </form>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <p class="error-message">@ViewBag.ErrorMessage</p>
+        }
+
+        @if (!string.IsNullOrEmpty(Model))
+        {
+            <p class="error-message">@Model</p>
+        }
+    </div>
+
+</body>
+</html>

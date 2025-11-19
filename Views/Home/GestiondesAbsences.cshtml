@@ -1,0 +1,581 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="../assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>ÉduNova</title>
+    <meta name="description" content="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../diplome1.png" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .dropdown label {
+                font-size: 16px;
+                font-weight: bold;
+                color: #555;
+            }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 48%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+            select:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f1f1f1;
+            color: #555;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .present {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .absent {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .reset-btn {
+            background-color: #17a2b8;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            .reset-btn:hover {
+                background-color: #138496;
+            }
+
+        .status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="/Home/ProfesseurDashboard" class="app-brand-link">
+                        <span class="app-brand-logo demo">
+                            <img src="../diplome1.png" style="height: 60px; width: auto;  box-shadow: 0 4px 8px rgba(0,0,0,0.2);" alt="Logo" />
+                        </span>
+
+
+                    </a>
+
+
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                    </a>
+                </div>
+
+                <div class="menu-inner-shadow"></div>
+
+
+                <ul class="menu-inner py-1">
+                    <!-- Dashboard -->
+                    <li class="menu-item">
+                        <a href="/Home/ProfesseurDashboard" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Dashboard</div>
+                        </a>
+                    </li>
+
+                    <!-- Layouts -->
+
+
+
+
+
+                    <li class="menu-item">
+                        <a href="/Home/EmploisDuTempsprof" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                            <div data-i18n="Analytics">Emplois du temps</div>
+                        </a>
+                    </li>
+                    <li class="menu-item active open">
+                        <a href="/Home/GestiondesAbsences" class="menu-link">
+                            <i class="menu-icon fa fa-calendar-times"></i>
+                            <div data-i18n="Analytics">Gestion des Absences</div>
+                        </a>
+                    </li>
+                    <li class="menu-item ">
+                        <a href="/Home/gestiondesnotes" class="menu-link">
+                            <!-- Nouvelle icône de demande de congé -->
+                            <i class="menu-icon fa fa-clipboard-list"></i>
+
+                            <div data-i18n="Analytics">Gestion des notes</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/Home/Gestiondesdemandesdeconge" class="menu-link">
+                            <!-- Nouvelle icône de demande de congé -->
+                            <i class="menu-icon fa fa-file-signature"></i>
+                            <div data-i18n="Analytics">Demande de congé</div>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                     id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="bx bx-menu bx-sm"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <!-- Search -->
+                        <!-- Search -->
+                        <div style="width: 100%; display: flex; justify-content: flex-end; padding: 10px;">
+                            <!-- Formulaire de déconnexion avec un bouton stylisé -->
+                            <form method="post" asp-action="Logout" asp-controller="Admin">
+                                <button type="submit" style="
+            background-color: #f0f0f0; /* Couleur de fond douce */
+            color: #007bff; /* Texte bleu */
+            border: 1px solid #007bff; /* Bordure bleue */
+            padding: 8px 15px; /* Espacement intérieur plus modéré */
+            font-size: 14px; /* Taille du texte plus petite */
+            border-radius: 20px; /* Coins arrondis plus prononcés */
+            cursor: pointer; /* Curseur pointeur */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Effet de transition */
+            font-weight: bold; /* Texte en gras */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce autour du bouton */
+            outline: none; /* Pas de contour */
+            "
+                                        onmouseover="this.style.backgroundColor='#007bff'; this.style.color='white';"
+                                        onmouseout="this.style.backgroundColor='#f0f0f0'; this.style.color='#007bff';">
+                                    Se déconnecter
+                                </button>
+                            </form>
+                        </div>
+
+
+
+
+                    </div>
+                </nav>
+
+                <!-- / Navbar -->
+                <div class="container">
+                    <h1>Gestion des Absences des Élèves</h1>
+
+                    <!-- Liste déroulante des classes -->
+                    <div class="dropdown">
+                        <label for="classSelect">Sélectionner la classe :</label>
+                        <select id="classSelect" onchange="updateMatiereList(); loadStudentsByClass()">
+                            <option value="">-- Choisissez une classe --</option>
+                            <option value="7ème année">7ème Année</option>
+                            <option value="8ème année">8ème Année</option>
+                            <option value="9ème année">9ème Année</option>
+                            <option value="1ère année">1ère Année</option>
+                            <option value="2ème année">2ème Année</option>
+                            <option value="3ème année">3ème Année</option>
+                            <option value="Terminale">Terminale</option>
+
+                        </select>
+                    </div>
+
+                    <!-- Liste déroulante des matières -->
+                    <div class="dropdown">
+                        <label for="matiereSelect">Sélectionner la matière :</label>
+                        <select id="matiereSelect">
+                            <option value="">-- Choisissez une matière --</option>
+                        </select>
+                    </div>
+
+                    <!-- Tableau des absences des élèves -->
+                    <table id="absenceTable">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Présence</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsBody">
+                            <!-- Les lignes d'élèves seront ajoutées ici dynamiquement -->
+                        </tbody>
+                    </table>
+
+                    <button class="reset-btn" onclick="resetAbsences()">Réinitialiser</button>
+                </div>
+
+                <!-- / Layout page -->
+            </div>
+
+            <!-- Overlay -->
+            <div class="layout-overlay layout-menu-toggle"></div>
+
+            <!-- Modal de modification -->
+            <!-- Modal Modifier Professeur -->
+            <!-- Modal de modification -->
+            <!-- / Layout wrapper -->
+
+            <div class="buy-now">
+                <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
+                   target="_blank" />
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+            <script>
+                                          let students = [];  // Initialisation vide des élèves
+                let matieres = [];  // Initialisation vide des matières
+
+                // Fonction pour remplir le tableau avec les élèves
+                             function populateTable() {
+                    const tbody = document.getElementById("studentsBody");
+                    tbody.innerHTML = '';  // Vider le tableau
+
+                    students.forEach(student => {
+                        const row = document.createElement("tr");
+
+                        let statusText = "Non défini";
+                        let statusColor = "black";
+
+                        if (student.status === "present") {
+                            statusText = "Présent";
+                            statusColor = "#28a745";
+                        } else if (student.status === "absent") {
+                            statusText = "Absent";
+                            statusColor = "#dc3545";
+                        }
+
+                        row.innerHTML = `
+                            <td>${student.nom}</td>
+                            <td>${student.prenom}</td>
+                            <td>
+                                <button class="present" onclick="toggleAbsence(${student.id}, 'present')">Présent</button>
+                                <button class="absent" onclick="toggleAbsence(${student.id}, 'absent')">Absent</button>
+                            </td>
+                            <td id="status-${student.id}" class="status" style="color: ${statusColor};">${statusText}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+
+                // Fonction pour changer l'état d'absence ou de présence
+                        // Fonction pour changer l'état d'absence ou de présence et l'enregistrer dans la base de données
+                                       async function toggleAbsence(studentId, status) {
+                    const classSelect = document.getElementById("classSelect");
+                    const matiereSelect = document.getElementById("matiereSelect");
+                    const selectedClass = classSelect.value;
+                    const matiereId = matiereSelect.value;
+
+                    // ✅ Vérification : classe non sélectionnée
+                    if (!selectedClass) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Classe non sélectionnée',
+                            text: 'Veuillez choisir une classe.',
+                            confirmButtonColor: '#d33'
+                        });
+                        return;
+                    }
+
+                    // ✅ Vérification : matière non sélectionnée
+                    if (!matiereId) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Matière non sélectionnée',
+                            text: 'Veuillez choisir une matière.',
+                            confirmButtonColor: '#d33'
+                        });
+                        return;
+                    }
+
+                    const statusCell = document.getElementById(`status-${studentId}`);
+
+                    if (status === 'present') {
+                        statusCell.textContent = "Présent";
+                        statusCell.style.color = "#28a745";
+                    } else if (status === 'absent') {
+                        statusCell.textContent = "Absent";
+                        statusCell.style.color = "#dc3545";
+                    }
+
+                    const absenceData = {
+                        EleveId: studentId,
+                        MatiereId: matiereId,
+                        Status: status
+                    };
+
+                    try {
+                        const response = await fetch('http://localhost:5108/api/Absence/enregistrer', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(absenceData)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Erreur lors de l\'enregistrement de l\'absence');
+                        }
+
+                        const data = await response.json();
+                        console.log(data);
+
+                        await loadStudentsByClass();
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Statut mis à jour',
+                            text: `L'élève a été marqué comme ${status === 'present' ? 'présent' : 'absent'}.`,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+
+                    } catch (error) {
+                        console.error('Erreur:', error);
+                    }
+                }
+
+                // Réinitialiser tous les statuts des absences
+                function resetAbsences() {
+                    const statusCells = document.querySelectorAll(".status");
+                    statusCells.forEach(cell => {
+                        cell.textContent = "Non défini";
+                        cell.style.color = "black";
+                    });
+                }
+
+                // Mettre à jour la liste des matières en fonction de la classe sélectionnée
+                              function updateMatiereList() {
+                    const matiereSelect = document.getElementById("matiereSelect");
+
+                    // Vider la liste des matières
+                    matiereSelect.innerHTML = '<option value="">Choisir une matière</option>';
+
+                    // Ajouter toutes les matières à la liste déroulante
+                    matieres.forEach(matiere => {
+                        const option = document.createElement("option");
+                        option.value = matiere.id;
+                        option.textContent = matiere.nom;
+                        matiereSelect.appendChild(option);
+                    });
+                }
+
+                                // Charger les élèves selon la classe sélectionnée
+                async function loadStudentsByClass() {
+                    const classSelect = document.getElementById("classSelect");
+                    const selectedClass = classSelect.value;
+
+                    if (!selectedClass) {
+                        // Si aucune classe sélectionnée, on vide la liste
+                        students = [];
+                        populateTable();
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(`http://localhost:5108/api/Eleve/elevesParClasseEtMatiere?classe=${encodeURIComponent(selectedClass)}`);
+                        if (!response.ok) {
+                            throw new Error('Échec de la récupération des élèves pour cette classe');
+                        }
+                        students = await response.json();
+                        populateTable();
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+
+                // Charger les élèves via l'API
+                async function loadStudents() {
+                    try {
+                        const response = await fetch('http://localhost:5108/api/Eleve'); // URL de l'API pour récupérer les élèves
+                        if (!response.ok) {
+                            throw new Error('Échec de la récupération des élèves');
+                        }
+                        students = await response.json();
+                        populateTable();
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+
+                // Charger les matières via l'API
+                async function loadMatieres() {
+                    try {
+                        const response = await fetch('http://localhost:5108/api/Matiere'); // URL de l'API pour récupérer les matières
+                        if (!response.ok) {
+                            throw new Error('Échec de la récupération des matières');
+                        }
+                        matieres = await response.json();
+                        updateMatiereList();  // Mettre à jour la liste des matières après leur chargement
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+
+                // Charger les données au démarrage
+                window.onload = function() {
+                    loadStudents();  // Appeler la fonction pour récupérer les élèves
+                    loadMatieres();   // Appeler la fonction pour récupérer les matières
+                }
+
+
+            </script>
+
+            <!-- Core JS -->
+            <!-- build:js assets/vendor/js/core.js -->
+            <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+            <script src="../assets/vendor/libs/popper/popper.js"></script>
+            <script src="../assets/vendor/js/bootstrap.js"></script>
+            <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+            <script src="../assets/vendor/js/menu.js"></script>
+            <!-- endbuild -->
+            <!-- Vendors JS -->
+            <!-- Main JS -->
+            <script src="../assets/js/main.js"></script>
+
+            <!-- Page JS -->
+            <!-- Place this tag in your head or just before your close body tag. -->
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
+

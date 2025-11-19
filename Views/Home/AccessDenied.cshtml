@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉduNova</title>
+    <link rel="icon" type="image/x-icon" href="../diplome1.png" />
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .message-box {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            width: 400px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn-back {
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-back:hover {
+                background-color: #2980b9;
+            }
+
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-box">
+            <h1 class="title">Accès Refusé</h1>
+            <p class="description">Vous n'avez pas l'autorisation d'accéder à cette page. Veuillez contacter l'administrateur ou vous connecter avec un compte valide.</p>
+            <a href="/" class="btn-back">Retour à l'Accueil</a>
+        </div>
+    </div>
+
+    <script>
+        // Ajoute un effet d'animation lorsque la page est chargée
+        document.addEventListener("DOMContentLoaded", function() {
+            const messageBox = document.querySelector('.message-box');
+            messageBox.style.animation = "fadeIn 1.5s ease";
+        });
+    </script>
+</body>
+</html>
+
